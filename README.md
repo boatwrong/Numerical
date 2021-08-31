@@ -1,2 +1,2 @@
 # Numerical
-Testing programs for numerical methods
+testing a program to run gaussian elimination on a 2d array of doubles
