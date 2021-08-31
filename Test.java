@@ -5,25 +5,33 @@ public class Test {
 	private double[][] arrCopy; // utility array
 	private double[] c;			// "answers" array
 	
-	private final int a = arr.length;
+	private int a;
 	
-	public Test()
+	public Test(int length)
 	{
-		
+		setLength(length);
 	}
 
+	public void setLength(int l)
+	{
+		a = l;
+	}
 	public double[][] getArr() {
-		arr = loopin();
 		return arr;
 	}
 
-	public void setArr(double[][] arr) {
-		this.arr = arr;
-		this.arrCopy = arr;
+	public void setArr() {
+		for(int i = 0; i <a; i++)
+		{
+			for(int j = 0; j<a; j++)
+			{
+				this.arr[i][j] = i + j;
+			}
+		}
 		
 	}
 	
-	private double[][] loopin()
+	private double[][] loopArr()
 	{
 		/*
 		 * i = modifying row
@@ -56,7 +64,7 @@ public class Test {
 		return arr;
 	}
 	
-	public void printArr()
+	public void printArr(double[][] arr)
 	{
 		for(int i = 0; i <a; i++)
 		{
@@ -70,26 +78,16 @@ public class Test {
 	
 	public static void main(String[] args)
 	{
+		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Input the size of the array");
+		int length = in.nextInt();
 		
+		Test test = new Test(length);
 		
-		int arrLength = in.nextInt();
-		double[][] arr = new double[arrLength][arrLength];
-		
-		for(int i = 0; i <arrLength; i++)
-		{
-			for(int j = 0; j<arrLength; j++)
-			{
-				arr[i][j] = i + j;
-			}
-		}
-		
-		Test test = new Test();
-		
-		test.setArr(arr);
-		test.getArr();
-		test.printArr();
+		test.setArr();
+		test.loopArr();
+		test.printArr(test.getArr());
 		
 		
 		
