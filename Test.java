@@ -9,16 +9,17 @@
 public class Test {
 	private int h;
 	private double[][] arr;
-	private double[][] arrCopy; 
+	private double[] answers;
 	
-	public Test(double[][] arr, double[][] arrCopy, int h)
+	public Test(double[][] arr, double[] answers, int h)
 	{
 		this.arr = arr;
-		this.arrCopy = arrCopy;
+		this.answers = answers;
 		this.h = h;
 	}
 
-	public void setArr() {
+	public void setArr() 
+	{
 		for(int i = 0; i <h; i++)
 		{
 			for(int j = 0; j<h; j++)
@@ -26,6 +27,11 @@ public class Test {
 				this.arr[i][j] = i + j;
 			}
 		}
+	}
+	
+	public void inputAnswers(int i, double value)
+	{
+		this.answers[i] = value;
 	}
 	
 	public void inputArr(int i, int j, double value)
@@ -49,28 +55,17 @@ public class Test {
 				
 				for(int k=i; k<h; k++) // iterate through columns to modify elements
 				{
-					// arrCopy[i][k] = m * arr[i][k];
 					this.arr[j][k] = this.arr[j][k] - m * this.arr[i][k];
-					
-					/*
-					for(int g = 0; g<h; g++) // subtract modified term from row to be modified
-					{
-						arr[j][k] = arr[j][k] - arrCopy[i][k];
-					}
-					*/
 				}
 				
-				/*
-				 * Removing this helps the first row but fucks the rest
-				 * 
-				for(int k = 0; k<h; k++) // return modifying row to original state
-				{
-					arr[i][k] = arrCopy[i][k];
-				}
-				*/
 			}
 		}
 		return this.arr;
+	}
+	
+	public double[] backSub()
+	{
+		return null;
 	}
 	
 	public void printArr()
@@ -81,6 +76,9 @@ public class Test {
 			{
 				System.out.print(arr[i][j] + " ");
 			}
+			
+			System.out.println(" = " + answers[i]);
+			
 			System.out.println();
 		}
 	}
