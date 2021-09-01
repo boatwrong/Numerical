@@ -50,17 +50,21 @@ public class Test {
 				for(int k=i; k<h; k++) // iterate through columns to modify elements
 				{
 					arrCopy[i][k] = m * arr[i][k]; // multiply modifying row by m
+
+					for(int g = 0; g<h; g++) // subtract modified term from row to be modified
+					{
+						arr[j][g] = arr[j][g] - arrCopy[j][g];
+					}
 				}
 				
-				for(int k = i; k<h; k++) // subtract modified term from row to be modified
-				{
-					arr[j][k] = arr[j][k] - arrCopy[j][k];
-				}
-				
-				for(int k = i; k<h; k++) // return modifying row to original state
+				/*
+				 * Removing this helps the first row but fucks the rest
+				 * 
+				for(int k = 0; k<h; k++) // return modifying row to original state
 				{
 					arr[i][k] = arrCopy[i][k];
 				}
+				*/
 			}
 		}
 		return arr;
