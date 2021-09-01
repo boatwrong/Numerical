@@ -27,10 +27,12 @@ public class Driver {
 			test.inputAnswers(j, in.nextDouble());
 		}
 		
-		
+		test.printArr();
 		test.flipArr();
 		test.printArr();
+		
 		test.backSub();
+		
 		test.printResults();
 		
 		

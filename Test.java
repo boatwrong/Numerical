@@ -60,6 +60,7 @@ public class Test {
 				{
 					arr[j][k] = arr[j][k] - m * arr[i][k];
 				}
+				answers[j] = answers[j] -  m * answers[i];	
 				
 			}
 		}
@@ -69,6 +70,9 @@ public class Test {
 	public double[] backSub()
 	{
 		int a = h;
+		
+		
+		
 		a--;
 		results[a] = answers[a] / arr[a][a];
 		a--;
@@ -94,6 +98,8 @@ public class Test {
 			
 			System.out.println();
 		}
+		System.out.println();
+		System.out.println();
 	}
 	
 	public void printResults()
@@ -102,6 +108,7 @@ public class Test {
 		for(int j = 0; j<h; j++)
 		{
 			System.out.println("x" + z + " = " + results[j]);
+			z++;
 		}
 	}
 	
