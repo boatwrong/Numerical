@@ -10,8 +10,9 @@ public class Driver {
 
 		double[][] arr = new double[h][h];
 		double[] answers = new double[h];
+		double[] results = new double[h];
 		
-		Test test = new Test(arr, answers, h);
+		Test test = new Test(arr, answers, results, h);
 		
 		for(int i = 0; i <h; i++)
 		{
@@ -29,6 +30,9 @@ public class Driver {
 		
 		test.flipArr();
 		test.printArr();
+		test.backSub();
+		test.printResults();
+		
 		
 		in.close();
 	}

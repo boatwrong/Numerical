@@ -10,12 +10,15 @@ public class Test {
 	private int h;
 	private double[][] arr;
 	private double[] answers;
+	private double[] results;
 	
-	public Test(double[][] arr, double[] answers, int h)
+	
+	public Test(double[][] arr, double[] answers, double[] results, int h)
 	{
 		this.arr = arr;
 		this.answers = answers;
 		this.h = h;
+		this.results = results;
 	}
 
 	public void setArr() 
@@ -55,17 +58,27 @@ public class Test {
 				
 				for(int k=i; k<h; k++) // iterate through columns to modify elements
 				{
-					this.arr[j][k] = this.arr[j][k] - m * this.arr[i][k];
+					arr[j][k] = arr[j][k] - m * arr[i][k];
 				}
 				
 			}
 		}
-		return this.arr;
+		return arr;
 	}
 	
 	public double[] backSub()
 	{
-		return null;
+		int a = h;
+		a--;
+		results[a] = answers[a] / arr[a][a];
+		a--;
+		results[a] = (answers[a] - results[a+1] * arr[a][a+1]) / arr[a][a];
+		a--;
+		results[a] = (answers[a] - results[a+1] * arr[a][a+1] - results[a+2] * arr[a][a+2]) / arr[a][a];
+		a--;
+		results[a] = (answers[a] - results[a+1] * arr[a][a+1] - results[a+2] * arr[a][a+2] - results[a+3] * arr[a][a+3]) / arr[a][a];
+		
+		return results;
 	}
 	
 	public void printArr()
@@ -80,6 +93,15 @@ public class Test {
 			System.out.println(" = " + answers[i]);
 			
 			System.out.println();
+		}
+	}
+	
+	public void printResults()
+	{
+		int z = 1;
+		for(int j = 0; j<h; j++)
+		{
+			System.out.println("x" + z + " = " + results[j]);
 		}
 	}
 	
