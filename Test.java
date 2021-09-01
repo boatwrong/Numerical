@@ -1,4 +1,11 @@
 import java.util.Scanner;
+/*
+ * TODO: modify "answer" array
+ * 
+ * TODO: figure out loops for back substitution
+ * 
+ * TODO: create array of "variables" that will be solved for
+ */
 
 public class Test {
 	private double[][] arr; 	// array to be modified
