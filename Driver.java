@@ -5,7 +5,7 @@ public class Driver {
 	{
 		
 		Scanner in = new Scanner(System.in);
-		System.out.println("Input the size of the array");
+		Test.greeting();
 		int h = in.nextInt();
 
 		double[][] arr = new double[h][h];
@@ -18,7 +18,7 @@ public class Driver {
 		{
 			for(int j = 0; j<h; j++)
 			{
-				test.inputArr(i, j, in.nextDouble());
+				test.inputGauss(i, j, in.nextDouble());
 			}
 		}
 		
@@ -27,9 +27,9 @@ public class Driver {
 			test.inputAnswers(j, in.nextDouble());
 		}
 		
-		test.printArr();
-		test.flipArr();
-		test.printArr();
+		test.printGauss();
+		test.flipGauss();
+		test.printGauss();
 		
 		test.backSub();
 		

@@ -1,33 +1,31 @@
-/*
- * TODO: create "answer" array
- * 
- * TODO: figure out loops for back substitution
- * 
- * TODO: create array of "variables" that will be solved for
- */
 
 public class Test {
 	private int h;
-	private double[][] arr;
+	private double[][] gauss;
 	private double[] answers;
 	private double[] results;
 	
 	
-	public Test(double[][] arr, double[] answers, double[] results, int h)
+	public Test(double[][] gauss, double[] answers, double[] results, int h)
 	{
-		this.arr = arr;
+		this.gauss = gauss;
 		this.answers = answers;
 		this.h = h;
 		this.results = results;
+		
+		for(int i = 0; i<h; i++)
+		{
+			results[i] = 0;
+		}
 	}
 
-	public void setArr() 
+	public void setGauss() 
 	{
 		for(int i = 0; i <h; i++)
 		{
 			for(int j = 0; j<h; j++)
 			{
-				this.arr[i][j] = i + j;
+				this.gauss[i][j] = i + j;
 			}
 		}
 	}
@@ -37,12 +35,12 @@ public class Test {
 		this.answers[i] = value;
 	}
 	
-	public void inputArr(int i, int j, double value)
+	public void inputGauss(int i, int j, double value)
 	{
-		this.arr[i][j] = value;
+		this.gauss[i][j] = value;
 	}
 	
-	public double[][] flipArr()
+	public double[][] flipGauss()
 	{
 		/*
 		 * i = modifying row
@@ -54,44 +52,57 @@ public class Test {
 		{
 			for(int j=i+1; j<h; j++) // iterate through rows to be modified
 			{
-				double m = (arr[j][i] / arr[i][i]);
+				double m = (gauss[j][i] / gauss[i][i]);
 				
 				for(int k=i; k<h; k++) // iterate through columns to modify elements
 				{
-					arr[j][k] = arr[j][k] - m * arr[i][k];
+					gauss[j][k] = gauss[j][k] - m * gauss[i][k];
 				}
 				answers[j] = answers[j] -  m * answers[i];	
 				
 			}
 		}
-		return arr;
+		return gauss;
 	}
 	
 	public double[] backSub()
-	{
-		int a = h;
+	{	
+		/*
 		
+		results[h-1] = answers[h-1] / gauss[h-1][h-1];
 		
+		results[h-2] = (answers[h-2] - results[h-1] * gauss[h-2][h-1]) / gauss[h-2][h-2];
 		
-		a--;
-		results[a] = answers[a] / arr[a][a];
-		a--;
-		results[a] = (answers[a] - results[a+1] * arr[a][a+1]) / arr[a][a];
-		a--;
-		results[a] = (answers[a] - results[a+1] * arr[a][a+1] - results[a+2] * arr[a][a+2]) / arr[a][a];
-		a--;
-		results[a] = (answers[a] - results[a+1] * arr[a][a+1] - results[a+2] * arr[a][a+2] - results[a+3] * arr[a][a+3]) / arr[a][a];
+		results[h-3] = (answers[h-3] - results[h-2] * gauss[h-3][h-2] - results[h-1] * gauss[h-3][h-1]) / gauss[h-3][h-3];
+		
+		results[h-4] = (answers[h-4] - results[h-3] * gauss[h-4][h-3] - results[h-2] * gauss[h-4][h-2] - results[h-1] * gauss[h-4][h-1]) / gauss[h-4][h-4];
+		
+		*/
+		
+		results[h-1] = answers[h-1] / gauss[h-1][h-1];
+		
+		for(int g = h-2; g>=0; g--)
+		{
+			for(int i=g+1; i<h; i++)
+			{
+				results[g] += (results[i] * gauss[g][i]);
+			}
+			
+			answers[g] -= results[g];
+			
+			results[g] = answers[g] / gauss[g][g];
+		}
 		
 		return results;
 	}
 	
-	public void printArr()
+	public void printGauss()
 	{
 		for(int i = 0; i <h; i++)
 		{
 			for(int j = 0; j<h; j++)
 			{
-				System.out.print(arr[i][j] + " ");
+				System.out.print(gauss[i][j] + " ");
 			}
 			
 			System.out.println(" = " + answers[i]);
@@ -110,6 +121,22 @@ public class Test {
 			System.out.println("x" + z + " = " + results[j]);
 			z++;
 		}
+	}
+	
+	public static void greeting()
+	{
+		System.out.println("This is a linear systems of equation solver");
+		System.out.println("\nTo input an equation to solve, follow the following format");
+		System.out.println("\n*** must be a \"square\" system of equations");
+		System.out.println("\nFor example, a 3 equation, 3 unknown system of equations.");
+
+		System.out.println("\n\nex.\nAx + By + Cz = d");
+		System.out.println("Dx + Ey + Fz = g\nHx + Iy + Jz = k");
+		System.out.println("To solve for x,y,z of the above system of equations,\n enter the following following");
+		System.out.println("(size of matrix is 3x3 so 3 is size\n\n3\nA B C\nD E F\nH I J\nd g k");
+		System.out.println("\n\nThat is the size, followed by the first row of coefficents,\n continuing through "
+				+ "each row of coeffieients\nfinishing with the constants on the right side of each equation");
+		
 	}
 	
 	
