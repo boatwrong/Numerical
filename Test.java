@@ -139,6 +139,15 @@ public class Test {
 		
 	}
 	
+	public void run()
+	{
+		printGauss();
+		flipGauss();
+		printGauss();
+		backSub();
+		printResults();
+	}
+	
 	
 
 }
