@@ -30,14 +30,7 @@ public class Driver {
 			test.inputAnswers(j, in.nextDouble());
 		}
 		
-		test.printGauss();
-		test.flipGauss();
-		test.printGauss();
-		
-		test.backSub();
-		
-		test.printResults();
-		
+		test.run();
 		
 		in.close();
 
