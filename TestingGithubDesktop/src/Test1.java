@@ -5,3 +5,4 @@ public class Test1 {
 		System.out.println("hello");
 	}
 }
+// This is cool I can just save this on eclipse, type a commit message, command enter, command p and boom
